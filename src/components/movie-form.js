@@ -45,7 +45,7 @@ class MovieForm extends Component {
 
   render(){
     const isDisabled = this.state.editedMovie.title.length === 0 || 
-                        this.state.editedMovie.description.length;
+                        this.state.editedMovie.description.length === 0;
     return (
       <React.Fragment>
           <span>Title</span><br/>
