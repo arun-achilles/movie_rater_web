@@ -33,7 +33,7 @@ class Login extends Component {
               .catch( err => console.log(err))    
 
         } else {
-            fetch(`${process.env.REACT_APP_API_URL}/api/users`, {
+            fetch(`${process.env.REACT_APP_API_URL}/api/users/`, {
                 method: 'POST',
                 headers: {
                   'Content-Type': 'application/json'
