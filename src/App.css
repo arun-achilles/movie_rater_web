@@ -86,3 +86,36 @@ h1 span.fa {
   width: 50%;
   margin: 50px 25%;
 }
+
+.review-form h4 {
+  margin-bottom: 0;
+}
+.review-form button {
+  margin-left: 0.5rem;
+}
+.review-container .no-review-message{
+  margin-left: 1rem;
+  background: rgba(236, 234, 234, 0.897);
+  color: black;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  border: solid grey 2px;
+}
+.review-section {
+  margin-left: 1rem;
+  background: white;
+  padding: 0.5rem;
+  border-radius: 1rem;
+  border: solid grey 2px;
+}
+.review-section .review-author-header {
+  color: rgb(19, 19, 71);
+  font-weight: bold;
+  border-bottom: 2px solid purple;
+  padding: 0 0 0.5rem 0;
+}
+.review-section .comment-detail {
+  color: black;
+  margin-left: 1rem;
+  padding: 0.5rem 0 0 0;
+}

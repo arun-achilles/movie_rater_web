@@ -1,9 +1,13 @@
 import React, { Component } from 'react';
+import MovieReviewSection from './MovieReviewSection';
 var FontAwesome  = require('react-fontawesome')
 class MovieDetails extends Component {
 
     state = {
-        highlighted: -1
+        highlighted: -1,
+        user: {
+            review: null
+        }
     }
 
     highlightRate = high => evt => {
@@ -21,6 +25,21 @@ class MovieDetails extends Component {
           }).then( resp => resp.json())
           .then( res => this.getDetails())
           .catch( err => console.log(err))    
+        }
+        
+    saveReview = () => {
+        let review = this.state.user.review;
+        fetch(`${process.env.REACT_APP_API_URL}/api/movies/${this.props.movie.id}/review_movie/`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Token ${this.props.token}` 
+            },
+            body: JSON.stringify({review: review})
+          }).then( resp => resp.json())
+          .then( res => this.getDetails())
+          .catch( err => console.log(err))    
+
     }
 
     getDetails = () => {
@@ -34,6 +53,12 @@ class MovieDetails extends Component {
           .then( res => this.props.updateMovie(res))
           .catch( err => console.log(err))    
 
+    }
+
+    inputChanged = evt => {
+        let user = this.state.user;
+        user[evt.target.name] = evt.target.value;
+        this.setState({user: user})
     }
 
     render () {
@@ -51,11 +76,31 @@ class MovieDetails extends Component {
                         ({movie.ratings_count})
                         <p>{movie.description}</p>
                         <div className="rate-container">
-                            <h4>Give you Ratings !!</h4>
+                            <h4>Give your Ratings !!</h4>
                             {[...Array(5)].map((e, i) => {
                                 return <FontAwesome key={i} name="star" className={this.state.highlighted > i-1 ? 'purple' : ''}
                                 onMouseEnter={this.highlightRate(i)} onMouseLeave={this.highlightRate(-1)} onClick={this.rateClicked(i)}/>
                             })}
+                        </div>
+                        <hr />
+                        <div className="review-form">
+                            <h4>Give your Reviews !!</h4><br/>
+                            <textarea name="review" onChange={this.inputChanged}/><br/>
+                            <button onClick={this.saveReview}>update</button>
+                            <button>cancel</button>
+                        </div>
+                        <hr />
+                        <div className="review-container">
+                            <h4>Reviews</h4>
+                                {movie.reviews.length ? (
+                                    <React.Fragment>
+                                        {movie.reviews.map((e, i) => {
+                                            return <MovieReviewSection review={e} />
+                                        })}  
+                                    </React.Fragment>
+                                ) : (
+                                    <h4 className="no-review-message">No Reviews Found for this movie.</h4>
+                                )}
                         </div>
                     </div>
                 ) : (
