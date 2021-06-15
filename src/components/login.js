@@ -7,9 +7,16 @@ class Login extends Component {
             username: '',
             password: ''
         },
-        isLoginView: true
+        isLoginView: true,
+        token: this.props.cookies.get('mr-token')
     }
-
+  
+    componentDidMount(){
+      if (this.state.token) {
+        window.location.href = '/movies';
+      }
+    }
+  
     inputChanged = evt => {
         let credentials = this.state.credentials;
         credentials[evt.target.name] = evt.target.value;

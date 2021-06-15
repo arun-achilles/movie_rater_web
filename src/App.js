@@ -4,6 +4,7 @@ import './App.css';
 import MovieList from './components/movie-list';
 import MovieDetails from './components/movie-details';
 import MovieForm from './components/movie-form';
+import Header from './components/header';
 var FontAwesome  = require('react-fontawesome')
 
 
@@ -59,6 +60,7 @@ class App extends Component {
   render(){
     return (
       <div className="App">
+        <Header cookies={this.props.cookies}/>
         <h1>
           <FontAwesome name="film" />
           <span>Movie Rater</span>

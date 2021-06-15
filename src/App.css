@@ -6,6 +6,12 @@
   margin: 0;
   padding: 50px
 }
+.logout-btn{
+  float: right;
+}
+.logout-btn button {
+  background: orange;  
+}
 
 .layout {
   display: grid;
