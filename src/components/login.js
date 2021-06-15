@@ -26,9 +26,12 @@ class Login extends Component {
                 body: JSON.stringify(this.state.credentials)
               }).then( resp => resp.json())
               .then( res => {
-                  console.log(res.token)
-                  this.props.cookies.set('mr-token', res.token)
-                  window.location.href = '/movies'
+                  if (res.hasOwnProperty('token')){
+                    this.props.cookies.set('mr-token', res.token)
+                    window.location.href = '/movies'
+                  } else {
+                    alert(JSON.stringify(res))
+                  }
               })
               .catch( err => console.log(err))    
 
@@ -41,9 +44,12 @@ class Login extends Component {
                 body: JSON.stringify(this.state.credentials)
               }).then( resp => resp.json())
               .then( res => {
-                  console.log(res.token)
-                  this.props.cookies.set('mr-token', res.token)
-                  window.location.href = '/movies'
+                if (res.hasOwnProperty('token')){
+                    this.props.cookies.set('mr-token', res.token)
+                    window.location.href = '/movies'
+                } else {
+                    alert(JSON.stringify(res))
+                }                  
               })
               .catch( err => console.log(err))        
         }
