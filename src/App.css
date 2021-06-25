@@ -36,20 +36,32 @@
   font-size: 2em;
   cursor: pointer;
 }
+@media only screen and (min-width: 600px) {
 .movie-list-infinite-container {
-  /* padding: 1em;
+  padding: 1em;
   border-left: 0.5em solid #1917174a;
   border-right: 0.5em solid #1917174a;
-  margin-bottom: 1em; */
+  margin-bottom: 1em;
 }
 
 .movie-item {
   display: grid;
   grid-template-columns: 1fr auto auto;
-  /* border: 2px solid #00000070;
+  border: 2px solid #00000070;
   padding: 1em;
   background: #1917174a;
-  margin: 1em; */
+  margin: 1em;
+}
+}
+@media only screen and (max-width: 600px) {
+  .movie-list-infinite-container {
+
+  }
+  
+  .movie-item {
+    display: grid;
+    grid-template-columns: 1fr auto auto;
+  }
 }
 
 .movie-item span{
@@ -101,6 +113,7 @@ h1 span.fa {
 .login-container {
   width: 50%;
   margin: 50px 25%;
+  text-align: center;
 }
 
 .review-form h4 {
