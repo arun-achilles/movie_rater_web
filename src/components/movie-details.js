@@ -43,16 +43,7 @@ class MovieDetails extends Component {
     }
 
     getDetails = () => {
-        fetch(`${process.env.REACT_APP_API_URL}/api/movies/${this.props.movie.id}/`, {
-            method: 'GET',
-            headers: {
-              'Content-Type': 'application/json',
-              'Authorization': `Token ${this.props.token}` 
-            }
-          }).then( resp => resp.json())
-          .then( res => this.props.updateMovie(res))
-          .catch( err => console.log(err))    
-
+        this.props.updateMovie(this.props.movie)
     }
 
     inputChanged = evt => {
